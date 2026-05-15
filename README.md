@@ -6,6 +6,8 @@ Aplicacion web para reportar y gestionar incidencias en la via publica (baches, 
 - Servidor Workflow: Fastify
 - Frontend: React + Vite
 - Base de datos: MongoDB Atlas
+- Gestion de tareas: Jira (Metodologia Scrum)
+- Control de versiones: GitHub
 
 ## Instalacion
 
@@ -109,6 +111,25 @@ Ciudadano --> [Mis Incidencias] --> Ve estado actualizado
 7. El administrador cambia el estado segun la atencion
 8. El ciudadano puede ver el estado actualizado al ingresar a su panel
 9. Fastify en http://localhost:5001 provee estadisticas del workflow en tiempo real
+
+## Gestion del Proyecto - Jira Scrum
+
+Se utilizo Jira con metodologia Scrum para gestionar el flujo de trabajo del proyecto. El repositorio de GitHub fue vinculado a Jira para trazabilidad total entre el codigo y las tareas.
+
+### Sprint 1 - Tareas completadas
+
+Historias de Usuario:
+- SDIC-3: HU-01: Reportar incidencia ciudadana - HECHO
+- SDIC-4: HU-02: Gestionar estado de incidencia como administrador - HECHO
+- SDIC-5: HU-03: Consultar estado de mis reportes como ciudadano - HECHO
+
+Casos de Prueba:
+- SDIC-6: CP-01: Registro de ciudadano - HECHO
+- SDIC-7: CP-02: Login de ciudadano - HECHO
+- SDIC-8: CP-03: Login de administrador - HECHO
+- SDIC-9: CP-04: Crear incidencia con imagen - HECHO
+- SDIC-10: CP-05: Cambiar estado de incidencia - HECHO
+- SDIC-11: CP-06: Eliminar incidencia - HECHO
 
 ## Casos de Prueba
 
