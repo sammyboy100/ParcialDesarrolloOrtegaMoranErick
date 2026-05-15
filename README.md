@@ -1,6 +1,20 @@
 # Sistema de Gestion de Incidencias Ciudadanas
 Aplicacion web para reportar y gestionar incidencias en la via publica (baches, alumbrado, basura, seguridad, emergencia). Cuenta con autenticacion de usuarios, panel de ciudadano y panel de administrador.
 
+## Proposito
+Desarrollar una aplicacion web que permita a los ciudadanos reportar incidencias en la via publica y a la municipalidad gestionarlas de forma eficiente, mejorando la comunicacion entre ciudadanos y autoridades locales.
+
+## Alcance
+El sistema cubre las siguientes funcionalidades:
+- Autenticacion y autorizacion con roles (ciudadano y administrador)
+- Reporte de incidencias con evidencia multimedia (imagen, video, audio)
+- Gestion de estados de incidencias por parte del administrador
+- Panel diferenciado segun el rol del usuario
+- Workflow estadistico en tiempo real con Fastify
+- Almacenamiento en la nube con MongoDB Atlas
+- Control de versiones con GitHub
+- Gestion de tareas con Jira Scrum
+
 ## Tecnologias
 - Backend: Node.js + Express + Mongoose + JWT + Bcrypt + Multer
 - Servidor Workflow: Fastify
@@ -47,6 +61,21 @@ npm run dev
 - Puede cambiar el estado de cada incidencia (pendiente, en proceso, resuelto)
 - Puede eliminar incidencias
 - Tiene acceso al panel con estadisticas en tiempo real
+
+## Requisitos Funcionales
+
+| ID | Requisito | Implementado |
+|----|-----------|--------------|
+| RF-01 | El sistema debe permitir el registro de ciudadanos con nombre, email y password | Si |
+| RF-02 | El sistema debe permitir el inicio de sesion con roles diferenciados (ciudadano y administrador) | Si |
+| RF-03 | El sistema debe permitir al ciudadano reportar incidencias con tipo, descripcion y ubicacion | Si |
+| RF-04 | El sistema debe permitir adjuntar evidencia multimedia (imagen, video o audio) a cada incidencia | Si |
+| RF-05 | El sistema debe mostrar al ciudadano solo sus propias incidencias | Si |
+| RF-06 | El sistema debe mostrar al administrador todas las incidencias de todos los ciudadanos | Si |
+| RF-07 | El sistema debe permitir al administrador cambiar el estado de una incidencia | Si |
+| RF-08 | El sistema debe permitir al administrador eliminar incidencias | Si |
+| RF-09 | El sistema debe mostrar estadisticas en tiempo real mediante Fastify | Si |
+| RF-10 | El sistema debe proteger las rutas con autenticacion JWT | Si |
 
 ## Historias de Usuario
 
