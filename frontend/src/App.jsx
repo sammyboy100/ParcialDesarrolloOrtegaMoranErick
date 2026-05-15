@@ -53,51 +53,56 @@ function Login({ onLogin }) {
   }
 
   return (
-    <div style={{ minHeight: '100vh', background: '#f0f2f5', display: 'flex', flexDirection: 'column' }}>
-      <div style={{ background: '#1a3a5c', color: 'white', padding: '0 40px', display: 'flex', alignItems: 'center', height: '64px' }}>
-        <div style={{ width: '40px', height: '40px', background: '#c0392b', borderRadius: '4px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', fontSize: '18px', marginRight: '16px' }}>G</div>
-        <div>
-          <div style={{ fontWeight: 'bold', fontSize: '16px' }}>Sistema de Gestion de Incidencias</div>
-          <div style={{ fontSize: '11px', opacity: 0.8 }}>Municipalidad - Via Publica</div>
-        </div>
+    <div style={{ minHeight: '100vh', background: '#eef2f7', display: 'flex', flexDirection: 'column' }}>
+      <div style={{ background: '#2c3e6b', color: 'white', padding: '0 40px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '48px' }}>
+        <span style={{ fontSize: '13px', fontWeight: '500' }}>Erick Daniel Ortega Moran — Parcial de Desarrollo de Software</span>
+        <span style={{ fontSize: '12px', opacity: 0.7 }}>Cod. 20210209H</span>
       </div>
 
       <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <div style={{ background: 'white', borderRadius: '8px', padding: '40px', width: '380px', boxShadow: '0 4px 12px rgba(0,0,0,0.15)' }}>
-          <h2 style={{ color: '#1a3a5c', marginBottom: '24px', textAlign: 'center', borderBottom: '2px solid #1a3a5c', paddingBottom: '12px' }}>
-            {modo === 'login' ? 'Iniciar Sesion' : 'Registro de Ciudadano'}
+        <div style={{ background: 'white', borderRadius: '12px', padding: '40px', width: '380px', boxShadow: '0 4px 20px rgba(0,0,0,0.08)' }}>
+          <h2 style={{ color: '#2c3e6b', marginBottom: '8px', textAlign: 'center', fontSize: '22px', fontWeight: '700' }}>
+            Sistema de Incidencias
           </h2>
+          <p style={{ textAlign: 'center', color: '#94a3b8', fontSize: '13px', marginBottom: '24px' }}>Via Publica Ciudadana</p>
 
-          {error && <div style={{ background: error.includes('exitoso') ? '#d5f5e3' : '#fde8e8', color: error.includes('exitoso') ? '#27ae60' : '#c0392b', padding: '10px', borderRadius: '4px', marginBottom: '16px', fontSize: '14px' }}>{error}</div>}
+          <div style={{ display: 'flex', background: '#f1f5f9', borderRadius: '8px', padding: '3px', marginBottom: '20px' }}>
+            {['login', 'registro'].map(m => (
+              <button key={m} onClick={() => { setModo(m); setError('') }} style={{
+                flex: 1, padding: '8px', border: 'none', borderRadius: '6px', fontSize: '13px',
+                fontWeight: '500', cursor: 'pointer',
+                background: modo === m ? 'white' : 'transparent',
+                color: modo === m ? '#2c3e6b' : '#94a3b8',
+                boxShadow: modo === m ? '0 1px 4px rgba(0,0,0,0.1)' : 'none'
+              }}>
+                {m === 'login' ? 'Iniciar Sesion' : 'Registrarse'}
+              </button>
+            ))}
+          </div>
+
+          {error && <div style={{ background: error.includes('exitoso') ? '#f0fdf4' : '#fff1f2', color: error.includes('exitoso') ? '#15803d' : '#be123c', padding: '10px', borderRadius: '8px', marginBottom: '16px', fontSize: '13px' }}>{error}</div>}
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
             {modo === 'registro' && (
               <div>
-                <label style={{ display: 'block', marginBottom: '6px', fontWeight: 'bold', color: '#333', fontSize: '14px' }}>Nombre completo</label>
-                <input value={nombre} onChange={e => setNombre(e.target.value)}
-                  placeholder="Su nombre completo"
-                  style={{ width: '100%', padding: '10px', border: '1px solid #ddd', borderRadius: '4px', fontSize: '14px', boxSizing: 'border-box' }} />
+                <label style={{ display: 'block', marginBottom: '6px', fontWeight: '500', color: '#475569', fontSize: '13px' }}>Nombre completo</label>
+                <input value={nombre} onChange={e => setNombre(e.target.value)} placeholder="Tu nombre completo"
+                  style={{ width: '100%', padding: '10px 12px', border: '1.5px solid #e2e8f0', borderRadius: '8px', fontSize: '14px', boxSizing: 'border-box', outline: 'none' }} />
               </div>
             )}
             <div>
-              <label style={{ display: 'block', marginBottom: '6px', fontWeight: 'bold', color: '#333', fontSize: '14px' }}>Correo electronico</label>
-              <input value={email} onChange={e => setEmail(e.target.value)}
-                placeholder="correo@ejemplo.com" type="email"
-                style={{ width: '100%', padding: '10px', border: '1px solid #ddd', borderRadius: '4px', fontSize: '14px', boxSizing: 'border-box' }} />
+              <label style={{ display: 'block', marginBottom: '6px', fontWeight: '500', color: '#475569', fontSize: '13px' }}>Correo electronico</label>
+              <input value={email} onChange={e => setEmail(e.target.value)} placeholder="correo@ejemplo.com" type="email"
+                style={{ width: '100%', padding: '10px 12px', border: '1.5px solid #e2e8f0', borderRadius: '8px', fontSize: '14px', boxSizing: 'border-box', outline: 'none' }} />
             </div>
             <div>
-              <label style={{ display: 'block', marginBottom: '6px', fontWeight: 'bold', color: '#333', fontSize: '14px' }}>Contrasena</label>
-              <input value={password} onChange={e => setPassword(e.target.value)}
-                placeholder="Su contrasena" type="password"
-                style={{ width: '100%', padding: '10px', border: '1px solid #ddd', borderRadius: '4px', fontSize: '14px', boxSizing: 'border-box' }} />
+              <label style={{ display: 'block', marginBottom: '6px', fontWeight: '500', color: '#475569', fontSize: '13px' }}>Contrasena</label>
+              <input value={password} onChange={e => setPassword(e.target.value)} placeholder="Tu contrasena" type="password"
+                style={{ width: '100%', padding: '10px 12px', border: '1.5px solid #e2e8f0', borderRadius: '8px', fontSize: '14px', boxSizing: 'border-box', outline: 'none' }} />
             </div>
             <button onClick={modo === 'login' ? handleLogin : handleRegistro}
-              style={{ padding: '12px', background: '#1a3a5c', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer', fontSize: '15px', fontWeight: 'bold' }}>
-              {modo === 'login' ? 'Ingresar' : 'Registrarse'}
-            </button>
-            <button onClick={() => { setModo(modo === 'login' ? 'registro' : 'login'); setError('') }}
-              style={{ padding: '10px', background: 'transparent', color: '#1a3a5c', border: '1px solid #1a3a5c', borderRadius: '4px', cursor: 'pointer', fontSize: '14px' }}>
-              {modo === 'login' ? 'Crear cuenta de ciudadano' : 'Ya tengo cuenta'}
+              style={{ padding: '11px', background: '#2c3e6b', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer', fontSize: '14px', fontWeight: '600', marginTop: '4px' }}>
+              {modo === 'login' ? 'Ingresar' : 'Crear cuenta'}
             </button>
           </div>
         </div>
@@ -139,76 +144,82 @@ function PanelCiudadano({ usuario, onLogout }) {
   }
 
   const renderArchivo = (i) => {
-    if (!i.archivo) return <span style={{ color: '#999' }}>Sin evidencia</span>
+    if (!i.archivo) return <span style={{ color: '#94a3b8', fontSize: '12px' }}>Sin evidencia</span>
     const url = `http://localhost:5000/uploads/${i.archivo}`
-    if (i.tipoArchivo === 'image') return <img src={url} alt="evidencia" style={{ width: '70px', height: '50px', objectFit: 'cover', borderRadius: '4px' }} />
+    if (i.tipoArchivo === 'image') return <img src={url} alt="evidencia" style={{ width: '70px', height: '50px', objectFit: 'cover', borderRadius: '6px' }} />
     if (i.tipoArchivo === 'video') return <video src={url} style={{ width: '70px', height: '50px' }} controls />
     if (i.tipoArchivo === 'audio') return <audio src={url} controls style={{ width: '120px' }} />
     return <a href={url} target="_blank" rel="noreferrer">Ver archivo</a>
   }
 
   return (
-    <div style={{ fontFamily: 'Arial', minHeight: '100vh', background: '#f0f2f5' }}>
-      <div style={{ background: '#1a3a5c', color: 'white', padding: '0 40px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '64px' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-          <div style={{ width: '40px', height: '40px', background: '#c0392b', borderRadius: '4px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', fontSize: '18px' }}>G</div>
+    <div style={{ fontFamily: 'Inter, Arial, sans-serif', minHeight: '100vh', background: '#eef2f7' }}>
+      <div style={{ background: '#2c3e6b', color: 'white', padding: '0 32px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '48px' }}>
+        <span style={{ fontSize: '13px', fontWeight: '500' }}>Erick Daniel Ortega Moran — Parcial de Desarrollo de Software</span>
+        <span style={{ fontSize: '12px', opacity: 0.7 }}>Cod. 20210209H</span>
+      </div>
+      <div style={{ background: 'white', borderBottom: '1px solid #e2e8f0', padding: '0 32px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '60px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+          <div style={{ width: '36px', height: '36px', background: '#2c3e6b', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <div style={{ width: '16px', height: '16px', background: 'white', borderRadius: '3px' }}></div>
+          </div>
           <div>
-            <div style={{ fontWeight: 'bold', fontSize: '16px' }}>Sistema de Gestion de Incidencias</div>
-            <div style={{ fontSize: '11px', opacity: 0.8 }}>Municipalidad - Via Publica</div>
+            <div style={{ fontWeight: '600', fontSize: '15px', color: '#1e293b' }}>Sistema de Incidencias</div>
+            <div style={{ fontSize: '11px', color: '#94a3b8' }}>Panel Ciudadano</div>
           </div>
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-          <span style={{ fontSize: '14px' }}>Bienvenido, {usuario.nombre}</span>
-          <button onClick={onLogout} style={{ padding: '6px 14px', background: '#c0392b', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer', fontSize: '13px' }}>Cerrar Sesion</button>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
+          <span style={{ fontSize: '13px', color: '#475569', fontWeight: '500' }}>{usuario.nombre}</span>
+          <button onClick={onLogout} style={{ padding: '6px 14px', background: '#f1f5f9', color: '#475569', border: '1px solid #e2e8f0', borderRadius: '6px', cursor: 'pointer', fontSize: '13px' }}>Salir</button>
         </div>
       </div>
 
-      <div style={{ background: '#22527a', display: 'flex', padding: '0 40px' }}>
+      <div style={{ background: 'white', borderBottom: '1px solid #e2e8f0', display: 'flex', padding: '0 32px' }}>
         {['mis-incidencias', 'reportar'].map(v => (
           <button key={v} onClick={() => setVista(v)} style={{
-            background: vista === v ? '#1a3a5c' : 'transparent',
-            color: 'white', border: 'none', padding: '12px 24px',
-            cursor: 'pointer', fontSize: '14px', borderBottom: vista === v ? '3px solid #c0392b' : '3px solid transparent'
+            background: 'transparent', color: vista === v ? '#2c3e6b' : '#94a3b8',
+            border: 'none', padding: '14px 20px', cursor: 'pointer', fontSize: '14px', fontWeight: '500',
+            borderBottom: vista === v ? '2px solid #2c3e6b' : '2px solid transparent'
           }}>
             {v === 'mis-incidencias' ? 'Mis Incidencias' : 'Reportar Incidencia'}
           </button>
         ))}
       </div>
 
-      <div style={{ padding: '30px 40px' }}>
+      <div style={{ padding: '28px 32px' }}>
         {vista === 'mis-incidencias' && (
           <div>
-            <h2 style={{ color: '#1a3a5c', marginBottom: '24px', borderBottom: '2px solid #1a3a5c', paddingBottom: '8px' }}>Mis Incidencias Reportadas</h2>
+            <h2 style={{ color: '#1e293b', marginBottom: '20px', fontSize: '18px', fontWeight: '600' }}>Mis Incidencias Reportadas</h2>
             {incidencias.length === 0 ? (
-              <div style={{ background: 'white', borderRadius: '8px', padding: '40px', textAlign: 'center', color: '#666' }}>
-                No tiene incidencias registradas. Haga clic en Reportar Incidencia para crear una.
+              <div style={{ background: 'white', borderRadius: '10px', padding: '48px', textAlign: 'center', color: '#94a3b8' }}>
+                No tienes incidencias registradas.
               </div>
             ) : (
-              <div style={{ background: 'white', borderRadius: '8px', padding: '20px', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>
+              <div style={{ background: 'white', borderRadius: '10px', padding: '20px', boxShadow: '0 1px 4px rgba(0,0,0,0.06)' }}>
                 <table width="100%" style={{ borderCollapse: 'collapse', fontSize: '14px' }}>
                   <thead>
-                    <tr style={{ background: '#1a3a5c', color: 'white' }}>
-                      <th style={{ padding: '10px', textAlign: 'left' }}>Tipo</th>
-                      <th style={{ padding: '10px', textAlign: 'left' }}>Descripcion</th>
-                      <th style={{ padding: '10px', textAlign: 'left' }}>Ubicacion</th>
-                      <th style={{ padding: '10px', textAlign: 'left' }}>Evidencia</th>
-                      <th style={{ padding: '10px', textAlign: 'left' }}>Estado</th>
-                      <th style={{ padding: '10px', textAlign: 'left' }}>Fecha</th>
+                    <tr style={{ background: '#f8fafc' }}>
+                      <th style={{ padding: '10px 12px', textAlign: 'left', color: '#64748b', fontWeight: '500', fontSize: '13px', borderBottom: '1px solid #e2e8f0' }}>Tipo</th>
+                      <th style={{ padding: '10px 12px', textAlign: 'left', color: '#64748b', fontWeight: '500', fontSize: '13px', borderBottom: '1px solid #e2e8f0' }}>Descripcion</th>
+                      <th style={{ padding: '10px 12px', textAlign: 'left', color: '#64748b', fontWeight: '500', fontSize: '13px', borderBottom: '1px solid #e2e8f0' }}>Ubicacion</th>
+                      <th style={{ padding: '10px 12px', textAlign: 'left', color: '#64748b', fontWeight: '500', fontSize: '13px', borderBottom: '1px solid #e2e8f0' }}>Evidencia</th>
+                      <th style={{ padding: '10px 12px', textAlign: 'left', color: '#64748b', fontWeight: '500', fontSize: '13px', borderBottom: '1px solid #e2e8f0' }}>Estado</th>
+                      <th style={{ padding: '10px 12px', textAlign: 'left', color: '#64748b', fontWeight: '500', fontSize: '13px', borderBottom: '1px solid #e2e8f0' }}>Fecha</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {incidencias.map((i, idx) => (
-                      <tr key={i._id} style={{ background: idx % 2 === 0 ? '#f9f9f9' : 'white' }}>
-                        <td style={{ padding: '10px' }}>
-                          <span style={{ background: COLORES_TIPO[i.tipo], color: 'white', padding: '2px 8px', borderRadius: '12px', fontSize: '12px' }}>{i.tipo}</span>
+                    {incidencias.map((i) => (
+                      <tr key={i._id} style={{ borderBottom: '1px solid #f1f5f9' }}>
+                        <td style={{ padding: '12px' }}>
+                          <span style={{ background: COLORES_TIPO[i.tipo] + '22', color: COLORES_TIPO[i.tipo], padding: '3px 10px', borderRadius: '20px', fontSize: '12px', fontWeight: '500' }}>{i.tipo}</span>
                         </td>
-                        <td style={{ padding: '10px' }}>{i.descripcion}</td>
-                        <td style={{ padding: '10px' }}>{i.ubicacion}</td>
-                        <td style={{ padding: '10px' }}>{renderArchivo(i)}</td>
-                        <td style={{ padding: '10px' }}>
-                          <span style={{ background: COLORES_ESTADO[i.estado], color: 'white', padding: '4px 10px', borderRadius: '12px', fontSize: '12px', fontWeight: 'bold' }}>{i.estado}</span>
+                        <td style={{ padding: '12px', color: '#334155' }}>{i.descripcion}</td>
+                        <td style={{ padding: '12px', color: '#64748b' }}>{i.ubicacion}</td>
+                        <td style={{ padding: '12px' }}>{renderArchivo(i)}</td>
+                        <td style={{ padding: '12px' }}>
+                          <span style={{ background: COLORES_ESTADO[i.estado] + '22', color: COLORES_ESTADO[i.estado], padding: '3px 10px', borderRadius: '20px', fontSize: '12px', fontWeight: '500' }}>{i.estado}</span>
                         </td>
-                        <td style={{ padding: '10px' }}>{new Date(i.fecha).toLocaleDateString()}</td>
+                        <td style={{ padding: '12px', color: '#94a3b8', fontSize: '13px' }}>{new Date(i.fecha).toLocaleDateString('es-PE')}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -219,35 +230,34 @@ function PanelCiudadano({ usuario, onLogout }) {
         )}
 
         {vista === 'reportar' && (
-          <div style={{ maxWidth: '600px' }}>
-            <h2 style={{ color: '#1a3a5c', marginBottom: '24px', borderBottom: '2px solid #1a3a5c', paddingBottom: '8px' }}>Reportar Nueva Incidencia</h2>
-            <div style={{ background: 'white', borderRadius: '8px', padding: '30px', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>
+          <div style={{ maxWidth: '560px' }}>
+            <h2 style={{ color: '#1e293b', marginBottom: '20px', fontSize: '18px', fontWeight: '600' }}>Reportar Nueva Incidencia</h2>
+            <div style={{ background: 'white', borderRadius: '10px', padding: '28px', boxShadow: '0 1px 4px rgba(0,0,0,0.06)' }}>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                 <div>
-                  <label style={{ display: 'block', marginBottom: '6px', fontWeight: 'bold', color: '#333', fontSize: '14px' }}>Tipo de Incidencia</label>
-                  <select value={tipo} onChange={e => setTipo(e.target.value)} style={{ width: '100%', padding: '10px', border: '1px solid #ddd', borderRadius: '4px', fontSize: '14px' }}>
+                  <label style={{ display: 'block', marginBottom: '6px', fontWeight: '500', color: '#475569', fontSize: '13px' }}>Tipo de Incidencia</label>
+                  <select value={tipo} onChange={e => setTipo(e.target.value)} style={{ width: '100%', padding: '10px 12px', border: '1.5px solid #e2e8f0', borderRadius: '8px', fontSize: '14px', outline: 'none' }}>
                     {TIPOS.map(t => <option key={t} value={t}>{t.charAt(0).toUpperCase() + t.slice(1)}</option>)}
                   </select>
                 </div>
                 <div>
-                  <label style={{ display: 'block', marginBottom: '6px', fontWeight: 'bold', color: '#333', fontSize: '14px' }}>Descripcion</label>
+                  <label style={{ display: 'block', marginBottom: '6px', fontWeight: '500', color: '#475569', fontSize: '13px' }}>Descripcion</label>
                   <textarea value={descripcion} onChange={e => setDescripcion(e.target.value)} rows={3}
-                    placeholder="Describa detalladamente el problema encontrado"
-                    style={{ width: '100%', padding: '10px', border: '1px solid #ddd', borderRadius: '4px', fontSize: '14px', resize: 'vertical', boxSizing: 'border-box' }} />
+                    placeholder="Describe el problema con detalle"
+                    style={{ width: '100%', padding: '10px 12px', border: '1.5px solid #e2e8f0', borderRadius: '8px', fontSize: '14px', resize: 'vertical', boxSizing: 'border-box', outline: 'none' }} />
                 </div>
                 <div>
-                  <label style={{ display: 'block', marginBottom: '6px', fontWeight: 'bold', color: '#333', fontSize: '14px' }}>Ubicacion</label>
-                  <input value={ubicacion} onChange={e => setUbicacion(e.target.value)}
-                    placeholder="Calle, avenida, barrio o referencia"
-                    style={{ width: '100%', padding: '10px', border: '1px solid #ddd', borderRadius: '4px', fontSize: '14px', boxSizing: 'border-box' }} />
+                  <label style={{ display: 'block', marginBottom: '6px', fontWeight: '500', color: '#475569', fontSize: '13px' }}>Ubicacion</label>
+                  <input value={ubicacion} onChange={e => setUbicacion(e.target.value)} placeholder="Calle, avenida o referencia"
+                    style={{ width: '100%', padding: '10px 12px', border: '1.5px solid #e2e8f0', borderRadius: '8px', fontSize: '14px', boxSizing: 'border-box', outline: 'none' }} />
                 </div>
                 <div>
-                  <label style={{ display: 'block', marginBottom: '6px', fontWeight: 'bold', color: '#333', fontSize: '14px' }}>Evidencia (imagen, video o audio)</label>
+                  <label style={{ display: 'block', marginBottom: '6px', fontWeight: '500', color: '#475569', fontSize: '13px' }}>Evidencia (imagen, video o audio)</label>
                   <input type="file" accept="image/*,video/*,audio/*" onChange={e => setArchivo(e.target.files[0])}
-                    style={{ width: '100%', padding: '10px', border: '1px solid #ddd', borderRadius: '4px', fontSize: '14px', boxSizing: 'border-box' }} />
-                  {archivo && <small style={{ color: '#27ae60' }}>Archivo seleccionado: {archivo.name}</small>}
+                    style={{ width: '100%', padding: '8px 12px', border: '1.5px solid #e2e8f0', borderRadius: '8px', fontSize: '14px', boxSizing: 'border-box' }} />
+                  {archivo && <small style={{ color: '#2c3e6b', marginTop: '4px', display: 'block' }}>{archivo.name}</small>}
                 </div>
-                <button onClick={agregar} style={{ padding: '12px', background: '#1a3a5c', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer', fontSize: '15px', fontWeight: 'bold' }}>
+                <button onClick={agregar} style={{ padding: '11px', background: '#2c3e6b', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer', fontSize: '14px', fontWeight: '600', marginTop: '4px' }}>
                   Enviar Reporte
                 </button>
               </div>
@@ -296,9 +306,9 @@ function PanelAdmin({ usuario, onLogout }) {
   }
 
   const renderArchivo = (i) => {
-    if (!i.archivo) return <span style={{ color: '#999' }}>Sin evidencia</span>
+    if (!i.archivo) return <span style={{ color: '#94a3b8', fontSize: '12px' }}>Sin evidencia</span>
     const url = `http://localhost:5000/uploads/${i.archivo}`
-    if (i.tipoArchivo === 'image') return <img src={url} alt="evidencia" style={{ width: '70px', height: '50px', objectFit: 'cover', borderRadius: '4px' }} />
+    if (i.tipoArchivo === 'image') return <img src={url} alt="evidencia" style={{ width: '70px', height: '50px', objectFit: 'cover', borderRadius: '6px' }} />
     if (i.tipoArchivo === 'video') return <video src={url} style={{ width: '70px', height: '50px' }} controls />
     if (i.tipoArchivo === 'audio') return <audio src={url} controls style={{ width: '120px' }} />
     return <a href={url} target="_blank" rel="noreferrer">Ver archivo</a>
@@ -307,70 +317,78 @@ function PanelAdmin({ usuario, onLogout }) {
   const incidenciasFiltradas = filtroEstado === 'todos' ? incidencias : incidencias.filter(i => i.estado === filtroEstado)
 
   return (
-    <div style={{ fontFamily: 'Arial', minHeight: '100vh', background: '#f0f2f5' }}>
-      <div style={{ background: '#1a3a5c', color: 'white', padding: '0 40px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '64px' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-          <div style={{ width: '40px', height: '40px', background: '#c0392b', borderRadius: '4px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', fontSize: '18px' }}>G</div>
+    <div style={{ fontFamily: 'Inter, Arial, sans-serif', minHeight: '100vh', background: '#eef2f7' }}>
+      <div style={{ background: '#2c3e6b', color: 'white', padding: '0 32px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '48px' }}>
+        <span style={{ fontSize: '13px', fontWeight: '500' }}>Erick Daniel Ortega Moran — Parcial de Desarrollo de Software</span>
+        <span style={{ fontSize: '12px', opacity: 0.7 }}>Cod. 20210209H</span>
+      </div>
+      <div style={{ background: 'white', borderBottom: '1px solid #e2e8f0', padding: '0 32px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '60px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+          <div style={{ width: '36px', height: '36px', background: '#2c3e6b', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <div style={{ width: '16px', height: '16px', background: 'white', borderRadius: '3px' }}></div>
+          </div>
           <div>
-            <div style={{ fontWeight: 'bold', fontSize: '16px' }}>Sistema de Gestion de Incidencias</div>
-            <div style={{ fontSize: '11px', opacity: 0.8 }}>Panel de Administrador</div>
+            <div style={{ fontWeight: '600', fontSize: '15px', color: '#1e293b' }}>Sistema de Incidencias</div>
+            <div style={{ fontSize: '11px', color: '#94a3b8' }}>Panel Administrador</div>
           </div>
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-          <span style={{ fontSize: '14px' }}>Admin: {usuario.nombre}</span>
-          <button onClick={onLogout} style={{ padding: '6px 14px', background: '#c0392b', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer', fontSize: '13px' }}>Cerrar Sesion</button>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
+          <span style={{ fontSize: '13px', color: '#475569', fontWeight: '500' }}>{usuario.nombre}</span>
+          <button onClick={onLogout} style={{ padding: '6px 14px', background: '#f1f5f9', color: '#475569', border: '1px solid #e2e8f0', borderRadius: '6px', cursor: 'pointer', fontSize: '13px' }}>Salir</button>
         </div>
       </div>
 
-      <div style={{ background: '#22527a', display: 'flex', padding: '0 40px' }}>
+      <div style={{ background: 'white', borderBottom: '1px solid #e2e8f0', display: 'flex', padding: '0 32px' }}>
         {['dashboard', 'incidencias'].map(v => (
           <button key={v} onClick={() => setVista(v)} style={{
-            background: vista === v ? '#1a3a5c' : 'transparent',
-            color: 'white', border: 'none', padding: '12px 24px',
-            cursor: 'pointer', fontSize: '14px', borderBottom: vista === v ? '3px solid #c0392b' : '3px solid transparent'
+            background: 'transparent', color: vista === v ? '#2c3e6b' : '#94a3b8',
+            border: 'none', padding: '14px 20px', cursor: 'pointer', fontSize: '14px', fontWeight: '500',
+            borderBottom: vista === v ? '2px solid #2c3e6b' : '2px solid transparent'
           }}>
             {v === 'dashboard' ? 'Panel Principal' : 'Gestion de Incidencias'}
           </button>
         ))}
       </div>
 
-      <div style={{ padding: '30px 40px' }}>
+      <div style={{ padding: '28px 32px' }}>
         {vista === 'dashboard' && (
           <div>
-            <h2 style={{ color: '#1a3a5c', marginBottom: '24px', borderBottom: '2px solid #1a3a5c', paddingBottom: '8px' }}>Panel Principal</h2>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '16px', marginBottom: '30px' }}>
+            <h2 style={{ color: '#1e293b', marginBottom: '20px', fontSize: '18px', fontWeight: '600' }}>Panel Principal</h2>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '14px', marginBottom: '24px' }}>
               {[
-                { label: 'Total Incidencias', valor: resumen.total, color: '#1a3a5c' },
+                { label: 'Total Incidencias', valor: resumen.total, color: '#2c3e6b' },
                 { label: 'Pendientes', valor: resumen.pendientes, color: '#c0392b' },
                 { label: 'En Proceso', valor: resumen.enProceso, color: '#e67e22' },
                 { label: 'Resueltos', valor: resumen.resueltos, color: '#27ae60' },
               ].map(t => (
-                <div key={t.label} style={{ background: 'white', borderRadius: '8px', padding: '20px', borderLeft: `5px solid ${t.color}`, boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>
-                  <div style={{ fontSize: '32px', fontWeight: 'bold', color: t.color }}>{t.valor}</div>
-                  <div style={{ color: '#666', fontSize: '14px', marginTop: '4px' }}>{t.label}</div>
+                <div key={t.label} style={{ background: 'white', borderRadius: '10px', padding: '20px', borderLeft: `4px solid ${t.color}`, boxShadow: '0 1px 4px rgba(0,0,0,0.06)' }}>
+                  <div style={{ fontSize: '32px', fontWeight: '700', color: t.color }}>{t.valor}</div>
+                  <div style={{ color: '#64748b', fontSize: '13px', marginTop: '4px' }}>{t.label}</div>
                 </div>
               ))}
             </div>
-            <div style={{ background: 'white', borderRadius: '8px', padding: '20px', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>
-              <h3 style={{ color: '#1a3a5c', marginBottom: '16px' }}>Ultimas Incidencias</h3>
+            <div style={{ background: 'white', borderRadius: '10px', padding: '20px', boxShadow: '0 1px 4px rgba(0,0,0,0.06)' }}>
+              <h3 style={{ color: '#1e293b', marginBottom: '16px', fontSize: '15px', fontWeight: '600' }}>Ultimas Incidencias</h3>
               <table width="100%" style={{ borderCollapse: 'collapse', fontSize: '14px' }}>
                 <thead>
-                  <tr style={{ background: '#1a3a5c', color: 'white' }}>
-                    <th style={{ padding: '10px', textAlign: 'left' }}>Tipo</th>
-                    <th style={{ padding: '10px', textAlign: 'left' }}>Descripcion</th>
-                    <th style={{ padding: '10px', textAlign: 'left' }}>Ubicacion</th>
-                    <th style={{ padding: '10px', textAlign: 'left' }}>Estado</th>
-                    <th style={{ padding: '10px', textAlign: 'left' }}>Fecha</th>
+                  <tr style={{ background: '#f8fafc' }}>
+                    <th style={{ padding: '10px 12px', textAlign: 'left', color: '#64748b', fontWeight: '500', fontSize: '13px', borderBottom: '1px solid #e2e8f0' }}>Tipo</th>
+                    <th style={{ padding: '10px 12px', textAlign: 'left', color: '#64748b', fontWeight: '500', fontSize: '13px', borderBottom: '1px solid #e2e8f0' }}>Descripcion</th>
+                    <th style={{ padding: '10px 12px', textAlign: 'left', color: '#64748b', fontWeight: '500', fontSize: '13px', borderBottom: '1px solid #e2e8f0' }}>Ubicacion</th>
+                    <th style={{ padding: '10px 12px', textAlign: 'left', color: '#64748b', fontWeight: '500', fontSize: '13px', borderBottom: '1px solid #e2e8f0' }}>Evidencia</th>
+                    <th style={{ padding: '10px 12px', textAlign: 'left', color: '#64748b', fontWeight: '500', fontSize: '13px', borderBottom: '1px solid #e2e8f0' }}>Estado</th>
+                    <th style={{ padding: '10px 12px', textAlign: 'left', color: '#64748b', fontWeight: '500', fontSize: '13px', borderBottom: '1px solid #e2e8f0' }}>Fecha</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {incidencias.slice(0, 5).map((i, idx) => (
-                    <tr key={i._id} style={{ background: idx % 2 === 0 ? '#f9f9f9' : 'white' }}>
-                      <td style={{ padding: '10px' }}><span style={{ background: COLORES_TIPO[i.tipo], color: 'white', padding: '2px 8px', borderRadius: '12px', fontSize: '12px' }}>{i.tipo}</span></td>
-                      <td style={{ padding: '10px' }}>{i.descripcion}</td>
-                      <td style={{ padding: '10px' }}>{i.ubicacion}</td>
-                      <td style={{ padding: '10px' }}><span style={{ background: COLORES_ESTADO[i.estado], color: 'white', padding: '2px 8px', borderRadius: '12px', fontSize: '12px' }}>{i.estado}</span></td>
-                      <td style={{ padding: '10px' }}>{new Date(i.fecha).toLocaleDateString()}</td>
+                  {incidencias.slice(0, 5).map((i) => (
+                    <tr key={i._id} style={{ borderBottom: '1px solid #f1f5f9' }}>
+                      <td style={{ padding: '12px' }}><span style={{ background: COLORES_TIPO[i.tipo] + '22', color: COLORES_TIPO[i.tipo], padding: '3px 10px', borderRadius: '20px', fontSize: '12px', fontWeight: '500' }}>{i.tipo}</span></td>
+                      <td style={{ padding: '12px', color: '#334155' }}>{i.descripcion}</td>
+                      <td style={{ padding: '12px', color: '#64748b' }}>{i.ubicacion}</td>
+                      <td style={{ padding: '12px' }}>{renderArchivo(i)}</td>
+                      <td style={{ padding: '12px' }}><span style={{ background: COLORES_ESTADO[i.estado] + '22', color: COLORES_ESTADO[i.estado], padding: '3px 10px', borderRadius: '20px', fontSize: '12px', fontWeight: '500' }}>{i.estado}</span></td>
+                      <td style={{ padding: '12px', color: '#94a3b8', fontSize: '13px' }}>{new Date(i.fecha).toLocaleDateString('es-PE')}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -381,47 +399,51 @@ function PanelAdmin({ usuario, onLogout }) {
 
         {vista === 'incidencias' && (
           <div>
-            <h2 style={{ color: '#1a3a5c', marginBottom: '24px', borderBottom: '2px solid #1a3a5c', paddingBottom: '8px' }}>Gestion de Incidencias</h2>
-            <div style={{ marginBottom: '16px', display: 'flex', gap: '8px' }}>
-              {['todos', 'pendiente', 'en proceso', 'resuelto'].map(f => (
-                <button key={f} onClick={() => setFiltroEstado(f)} style={{
-                  padding: '8px 16px', border: 'none', borderRadius: '4px', cursor: 'pointer', fontSize: '13px',
-                  background: filtroEstado === f ? '#1a3a5c' : '#ddd',
-                  color: filtroEstado === f ? 'white' : '#333'
-                }}>
-                  {f.charAt(0).toUpperCase() + f.slice(1)}
-                </button>
-              ))}
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+              <h2 style={{ color: '#1e293b', fontSize: '18px', fontWeight: '600' }}>Gestion de Incidencias</h2>
+              <div style={{ display: 'flex', gap: '6px' }}>
+                {['todos', 'pendiente', 'en proceso', 'resuelto'].map(f => (
+                  <button key={f} onClick={() => setFiltroEstado(f)} style={{
+                    padding: '7px 14px', border: '1.5px solid', borderRadius: '8px', fontSize: '12px',
+                    fontWeight: '500', cursor: 'pointer',
+                    background: filtroEstado === f ? '#2c3e6b' : 'white',
+                    color: filtroEstado === f ? 'white' : '#64748b',
+                    borderColor: filtroEstado === f ? '#2c3e6b' : '#e2e8f0'
+                  }}>
+                    {f.charAt(0).toUpperCase() + f.slice(1)}
+                  </button>
+                ))}
+              </div>
             </div>
-            <div style={{ background: 'white', borderRadius: '8px', padding: '20px', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>
+            <div style={{ background: 'white', borderRadius: '10px', padding: '20px', boxShadow: '0 1px 4px rgba(0,0,0,0.06)' }}>
               <table width="100%" style={{ borderCollapse: 'collapse', fontSize: '14px' }}>
                 <thead>
-                  <tr style={{ background: '#1a3a5c', color: 'white' }}>
-                    <th style={{ padding: '10px', textAlign: 'left' }}>Tipo</th>
-                    <th style={{ padding: '10px', textAlign: 'left' }}>Descripcion</th>
-                    <th style={{ padding: '10px', textAlign: 'left' }}>Ubicacion</th>
-                    <th style={{ padding: '10px', textAlign: 'left' }}>Evidencia</th>
-                    <th style={{ padding: '10px', textAlign: 'left' }}>Estado</th>
-                    <th style={{ padding: '10px', textAlign: 'left' }}>Fecha</th>
-                    <th style={{ padding: '10px', textAlign: 'left' }}>Accion</th>
+                  <tr style={{ background: '#f8fafc' }}>
+                    <th style={{ padding: '10px 12px', textAlign: 'left', color: '#64748b', fontWeight: '500', fontSize: '13px', borderBottom: '1px solid #e2e8f0' }}>Tipo</th>
+                    <th style={{ padding: '10px 12px', textAlign: 'left', color: '#64748b', fontWeight: '500', fontSize: '13px', borderBottom: '1px solid #e2e8f0' }}>Descripcion</th>
+                    <th style={{ padding: '10px 12px', textAlign: 'left', color: '#64748b', fontWeight: '500', fontSize: '13px', borderBottom: '1px solid #e2e8f0' }}>Ubicacion</th>
+                    <th style={{ padding: '10px 12px', textAlign: 'left', color: '#64748b', fontWeight: '500', fontSize: '13px', borderBottom: '1px solid #e2e8f0' }}>Evidencia</th>
+                    <th style={{ padding: '10px 12px', textAlign: 'left', color: '#64748b', fontWeight: '500', fontSize: '13px', borderBottom: '1px solid #e2e8f0' }}>Estado</th>
+                    <th style={{ padding: '10px 12px', textAlign: 'left', color: '#64748b', fontWeight: '500', fontSize: '13px', borderBottom: '1px solid #e2e8f0' }}>Fecha</th>
+                    <th style={{ padding: '10px 12px', textAlign: 'left', color: '#64748b', fontWeight: '500', fontSize: '13px', borderBottom: '1px solid #e2e8f0' }}>Accion</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {incidenciasFiltradas.map((i, idx) => (
-                    <tr key={i._id} style={{ background: idx % 2 === 0 ? '#f9f9f9' : 'white' }}>
-                      <td style={{ padding: '10px' }}><span style={{ background: COLORES_TIPO[i.tipo], color: 'white', padding: '2px 8px', borderRadius: '12px', fontSize: '12px' }}>{i.tipo}</span></td>
-                      <td style={{ padding: '10px' }}>{i.descripcion}</td>
-                      <td style={{ padding: '10px' }}>{i.ubicacion}</td>
-                      <td style={{ padding: '10px' }}>{renderArchivo(i)}</td>
-                      <td style={{ padding: '10px' }}>
+                  {incidenciasFiltradas.map((i) => (
+                    <tr key={i._id} style={{ borderBottom: '1px solid #f1f5f9' }}>
+                      <td style={{ padding: '12px' }}><span style={{ background: COLORES_TIPO[i.tipo] + '22', color: COLORES_TIPO[i.tipo], padding: '3px 10px', borderRadius: '20px', fontSize: '12px', fontWeight: '500' }}>{i.tipo}</span></td>
+                      <td style={{ padding: '12px', color: '#334155' }}>{i.descripcion}</td>
+                      <td style={{ padding: '12px', color: '#64748b' }}>{i.ubicacion}</td>
+                      <td style={{ padding: '12px' }}>{renderArchivo(i)}</td>
+                      <td style={{ padding: '12px' }}>
                         <select value={i.estado} onChange={e => cambiarEstado(i._id, e.target.value)}
-                          style={{ padding: '4px 8px', borderRadius: '4px', border: `2px solid ${COLORES_ESTADO[i.estado]}`, color: COLORES_ESTADO[i.estado], fontWeight: 'bold', fontSize: '12px' }}>
+                          style={{ padding: '5px 10px', borderRadius: '8px', border: `1.5px solid ${COLORES_ESTADO[i.estado]}`, color: COLORES_ESTADO[i.estado], fontWeight: '500', fontSize: '12px', background: COLORES_ESTADO[i.estado] + '11', outline: 'none', cursor: 'pointer' }}>
                           {ESTADOS.map(e => <option key={e} value={e}>{e}</option>)}
                         </select>
                       </td>
-                      <td style={{ padding: '10px' }}>{new Date(i.fecha).toLocaleDateString()}</td>
-                      <td style={{ padding: '10px' }}>
-                        <button onClick={() => eliminar(i._id)} style={{ background: '#c0392b', color: 'white', border: 'none', padding: '6px 12px', borderRadius: '4px', cursor: 'pointer', fontSize: '12px' }}>
+                      <td style={{ padding: '12px', color: '#94a3b8', fontSize: '13px' }}>{new Date(i.fecha).toLocaleDateString('es-PE')}</td>
+                      <td style={{ padding: '12px' }}>
+                        <button onClick={() => eliminar(i._id)} style={{ background: '#fff1f2', color: '#be123c', border: '1px solid #fecdd3', padding: '5px 12px', borderRadius: '6px', cursor: 'pointer', fontSize: '12px', fontWeight: '500' }}>
                           Eliminar
                         </button>
                       </td>
